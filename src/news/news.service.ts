@@ -14,6 +14,7 @@ export class NewsService {
         title: dto.title.trim(),
         body: dto.body.trim(),
         imageUrl: dto.imageUrl.trim(),
+        tags: dto.tags.trim(),
       })
       .returning();
 
@@ -78,6 +79,7 @@ export class NewsService {
         title: dto.title?.trim(),
         body: dto.body?.trim(),
         imageUrl: dto.imageUrl?.trim(),
+        tags: dto.tags?.trim(),
       })
       .where(eq(news.id, id))
       .returning();

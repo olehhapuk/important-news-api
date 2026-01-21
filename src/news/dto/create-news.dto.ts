@@ -21,4 +21,10 @@ export class CreateNewsDto {
     example: 'https://example.com/image.jpg',
   })
   imageUrl: string;
+
+  @ApiProperty({
+    type: 'string',
+    example: 'tag1,tag2,tag3',
+  })
+  tags: string;
 }
