@@ -1,3 +1,4 @@
+import { relations } from 'drizzle-orm';
 import { text } from 'drizzle-orm/pg-core';
 import { integer } from 'drizzle-orm/pg-core';
 import { timestamp } from 'drizzle-orm/pg-core';
@@ -25,6 +26,10 @@ export const news = pgTable('news', {
   views: integer('views').notNull().default(0),
 });
 
+export const newsRelations = relations(news, ({ many }) => ({
+  comments: many(comments),
+}));
+
 export const comments = pgTable('comments', {
   id: uuid('id').primaryKey().defaultRandom(),
   createdAt: timestamp('created_at', {
@@ -44,3 +49,10 @@ export const comments = pgTable('comments', {
       onUpdate: 'cascade',
     }),
 });
+
+export const commentsRelations = relations(comments, ({ one }) => ({
+  post: one(news, {
+    fields: [comments.newsId],
+    references: [news.id],
+  }),
+}));

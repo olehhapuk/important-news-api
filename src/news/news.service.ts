@@ -26,6 +26,9 @@ export class NewsService {
       orderBy: () => desc(news.createdAt),
       limit: perPage,
       offset: (page - 1) * perPage,
+      with: {
+        comments: true,
+      },
     });
 
     const totalCount = await db.$count(news);

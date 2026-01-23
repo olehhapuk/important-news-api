@@ -58,4 +58,10 @@ export class NewsPostDto {
     example: 'tag1,tag2,tag3',
   })
   tags: string;
+
+  @ApiProperty({
+    type: 'number',
+    example: 1,
+  })
+  views: number;
 }
