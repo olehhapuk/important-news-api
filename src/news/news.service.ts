@@ -55,7 +55,7 @@ export class NewsService {
 
   async viewOne(id: string) {
     await this.findOne(id);
-    const updatedItem = await db
+    const [updatedItem] = await db
       .update(news)
       .set({
         views: sql`${news.views} + 1`,
