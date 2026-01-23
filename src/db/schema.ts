@@ -22,6 +22,7 @@ export const news = pgTable('news', {
   likes: integer('likes').notNull().default(0),
   dislikes: integer('dislikes').notNull().default(0),
   tags: text('tags').notNull().default(''),
+  views: integer('views').notNull().default(0),
 });
 
 export const comments = pgTable('comments', {

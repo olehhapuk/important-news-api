@@ -50,6 +50,19 @@ export class NewsService {
     return item;
   }
 
+  async viewOne(id: string) {
+    await this.findOne(id);
+    const updatedItem = await db
+      .update(news)
+      .set({
+        views: sql`${news.views} + 1`,
+      })
+      .where(eq(news.id, id))
+      .returning();
+
+    return updatedItem;
+  }
+
   async findComments(id: string) {
     const item = await db.query.news.findFirst({
       where: () => eq(news.id, id),

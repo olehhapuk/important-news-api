@@ -55,7 +55,7 @@ export class NewsController {
     type: NewsPostDto,
   })
   findOne(@Param('id') id: string) {
-    return this.newsService.findOne(id);
+    return this.newsService.viewOne(id);
   }
 
   @Get(':id/comments')
