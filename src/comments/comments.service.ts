@@ -64,7 +64,7 @@ export class CommentsService {
     const [updatedComment] = await db
       .update(comments)
       .set({
-        likes: sql`${comments.dislikes} + 1`,
+        dislikes: sql`${comments.dislikes} + 1`,
       })
       .where(eq(comments.id, id))
       .returning();
