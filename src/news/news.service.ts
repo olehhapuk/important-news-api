@@ -148,7 +148,7 @@ export class NewsService {
     const [updatedNewsItem] = await db
       .update(news)
       .set({
-        likes: sql`${news.dislikes} + 1`,
+        dislikes: sql`${news.dislikes} + 1`,
       })
       .where(eq(news.id, id))
       .returning();
