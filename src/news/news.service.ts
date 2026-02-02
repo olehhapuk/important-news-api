@@ -32,7 +32,10 @@ export class NewsService {
       },
     });
 
-    const totalCount = await db.$count(news);
+    const totalCount = await db.$count(
+      news,
+      query ? like(news.title, `%${query}%`) : undefined,
+    );
 
     return {
       page,
