@@ -3,7 +3,7 @@ import { CreateNewsDto } from './dto/create-news.dto';
 import { UpdateNewsDto } from './dto/update-news.dto';
 import { db } from 'src/db';
 import { comments, news } from 'src/db/schema';
-import { desc, eq, sql } from 'drizzle-orm';
+import { desc, eq, like, sql } from 'drizzle-orm';
 
 @Injectable()
 export class NewsService {
@@ -21,9 +21,10 @@ export class NewsService {
     return newItem;
   }
 
-  async findAll(page: number, perPage: number) {
+  async findAll(page: number, perPage: number, query: string) {
     const newsItems = await db.query.news.findMany({
       orderBy: () => desc(news.createdAt),
+      where: () => like(news.title, `%${query}%`),
       limit: perPage,
       offset: (page - 1) * perPage,
       with: {

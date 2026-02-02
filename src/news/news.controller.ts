@@ -42,8 +42,12 @@ export class NewsController {
     status: 200,
     type: PaginatedNewsDto,
   })
-  findAll(@Query('page') page: string, @Query('perPage') perPage: string) {
-    return this.newsService.findAll(+page, +perPage);
+  findAll(
+    @Query('page') page: string,
+    @Query('perPage') perPage: string,
+    @Query('q') q: string,
+  ) {
+    return this.newsService.findAll(+page, +perPage, q);
   }
 
   @Get(':id')
