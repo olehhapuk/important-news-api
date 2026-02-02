@@ -76,6 +76,7 @@ export class NewsService {
 
     const commentsData = await db.query.comments.findMany({
       where: () => eq(comments.newsId, id),
+      orderBy: () => desc(comments.createdAt),
     });
 
     return commentsData;
