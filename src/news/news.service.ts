@@ -24,7 +24,7 @@ export class NewsService {
   async findAll(page: number, perPage: number, query: string) {
     const newsItems = await db.query.news.findMany({
       orderBy: () => desc(news.createdAt),
-      where: () => like(news.title, `%${query}%`),
+      where: query ? () => like(news.title, `%${query}%`) : undefined,
       limit: perPage,
       offset: (page - 1) * perPage,
       with: {
