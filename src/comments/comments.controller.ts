@@ -1,4 +1,5 @@
 import {
+  Body,
   Controller,
   Delete,
   HttpCode,
@@ -23,7 +24,7 @@ export class CommentsController {
     status: 201,
     type: CommentDto,
   })
-  create(dto: CreateCommentDto) {
+  create(@Body() dto: CreateCommentDto) {
     return this.commentsService.create(dto);
   }
 
